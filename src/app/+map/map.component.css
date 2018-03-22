@@ -1,0 +1,191 @@
+#gmap {
+  height: 600px;
+  border-style: groove;
+  border-width: 1px;
+  background: transparent url(https://loading.io/spinners/camera/index.svg) no-repeat center center;
+}
+
+#GmapShowDetailControl {
+  display: none;
+}
+
+#gmap-btnShowDetail, #gmap-btnSaveChange, #gmap-btnDescription {
+  margin: 10px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  border: 0px solid #fff;
+  border-radius: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+.stylish-input-group .input-group-addon {
+  background: white !important;
+  border: 1;
+  border-radius: 1px;
+}
+
+.stylish-input-group .form-control {
+  border-right: 0;
+  box-shadow: 0 0 0;
+  border-color: #ccc;
+  border: 1;
+  border-radius: 1px;
+}
+
+.stylish-input-group button {
+  border: 0;
+  background: transparent;
+}
+
+#gmap-ctrl-commentIcon{
+  display: none;
+}
+
+#gmap-ctrl-commentIcon-ctrl{
+  margin: 10px;
+  margin-bottom: 5px;
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+#gmap-ctrl-commentIcon-ctrl::before{
+  display: block;
+}
+
+#gmap-ctrls {
+  display: none;
+}
+
+#gmap-ctrl1 {
+  margin: 10px;
+  margin-bottom: 5px;
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+#gmap-ctrl1::before {
+  /* content: 'Roads'; */
+  display: block;
+}
+
+#gmap-ctrl0 {
+  margin: 1px;
+  margin-bottom: 2px;
+  /* border: 0px solid #fff;
+  border-radius: 1px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, .3); */
+}
+
+#gmap-ctrl2 {
+  margin: 10px;
+  margin-bottom: 0px;
+  /* background: #fff; */
+}
+
+#gmap-ctrl2 a {
+  margin-bottom: 5px;
+}
+
+#gmap-ctrl2::before {
+  /* content: 'Roads'; */
+  display: block;
+}
+
+#gmap-description {
+  margin: 10px;
+  height: 29px;
+  vertical-align: middle;
+  margin-bottom: 5px;
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+#gmap-ctrl3 {
+  margin: 10px;
+  margin-top: 50px;
+  margin-bottom: 5px;
+  background: #fff68f;
+  border: 5px solid #fff68f;
+  border-radius: 2px;
+  font-size: 13px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+#gmap-ctrl3::before {
+  display: block;
+}
+
+/* .gmap-ctrl strong{
+    border: 1px solid #818181;
+    border-radius: 2px;
+    background:#fff;
+    display:block;
+  } */
+
+
+#gmap-AddIconDialog label,
+input {
+  display: block;
+}
+
+#gmap-dialog input.text {
+  margin-bottom: 12px;
+  width: 95%;
+  padding: .4em;
+}
+
+#gmap-dialog fieldset {
+  padding: 0;
+  border: 0;
+  margin-top: 25px;
+}
+
+#gmap-dialog h1 {
+  font-size: 1.2em;
+  margin: .6em 0;
+}
+
+.ui-dialog .ui-state-error {
+  padding: .3em;
+}
+
+#gmap-btn-loadMore {
+  padding: 10px;
+  font-size: 9pt;
+  text-align: center;
+  background-color: rgb(53, 141, 241);
+  color: #fff;
+  border-width: 0 1px 1px 0;
+  border-radius: 4px;
+  border-style: solid;
+  border-color: #fff;
+  box-shadow: 0 0px 0px #ccc;
+  transition: all 400ms ease-in-out;
+  -webkit-transition: all 400ms ease-in-out;
+  -moz-transition: all 400ms ease-in-out;
+  -o-transition: all 400ms ease-in-out;
+}
+#gmap-btn-loadMore:hover {
+  background-color: #005cc5;
+}
+
+#lbl-btn-loadMore{
+  padding: 10px;
+  font-size: 9pt;
+  text-align: center;
+  background-color: #33739E;
+  color: #fff;
+  border: none;
+  box-shadow: 0 0px 0px #ccc;
+}
+
+textarea
+{
+    resize: none;
+}

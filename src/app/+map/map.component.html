@@ -1,0 +1,253 @@
+<div class="m-subheader ">
+  <div class="d-flex align-items-center">
+    <div class="mr-auto">
+      <h3 class="m-subheader__title m-subheader__title--separator">
+        Map
+      </h3>
+      <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+        <li class="m-nav__item m-nav__item--home">
+          <a href="#" class="m-nav__link m-nav__link--icon">
+            <i class="m-nav__link-icon la la-home"></i>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a href="#" class="m-nav__link">
+            <span class="m-nav__link-text">
+              Home
+            </span>
+          </a>
+        </li>
+        <li class="m-nav__separator">
+          -
+        </li>
+        <li class="m-nav__item">
+          <a href="" class="m-nav__link">
+            <span class="m-nav__link-text">
+              Maps
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="m-content">
+  <div class="row">
+    <div class="col-md-12">
+      <!--begin::Portlet-->
+      <div class="m-portlet m-portlet--tab">
+        <div class="m-portlet__head">
+          <div class="m-portlet__head-caption">
+            <div class="m-portlet__head-title">
+              <span class="m-portlet__head-icon m--hide">
+                <i class="la la-gear"></i>
+              </span>
+              <h3 class="m-portlet__head-text">
+                Google Map
+              </h3>
+            </div>
+          </div>
+        </div>
+        <div class="m-portlet__body">
+          <div id="gmap-wait" name="gmap-wait" align="center"></div>
+          <div id="gmap-ctrl0" class="row gmap-ctrl">
+            <div class="col-xs-12">
+              <div id="gmap-description"></div>
+            </div>
+            <div class="col-md-12 col-xs-12">
+              <div class="col-md-3 col-xs-6">
+                  <a id="gmap-btnShowDetail" class="btn btn-default btn-sm"><i class="fa fa-list"></i> Road List</a>
+              </div>
+              <div class="col-md-3 col-xs-6">
+                  <a id="gmap-btnSaveChange" class="btn btn-default btn-sm"><i class="fa fa-save"></i> Save change</a>
+              </div>
+              <div class="col-md-3 col-xs-6">
+                  <a id="gmap-btnDescription" class="btn btn-default btn-sm"><i class="fa fa-book"></i> Descriptions</a>
+              </div>
+            </div>
+          </div>
+          <div id="gmap"></div>
+          <div id="gmap-ctrl-commentIcon">
+            <div id="gmap-ctrl-commentIcon-ctrl" class="row gmap-ctrl">
+              <div id="gmap-commnetIconDiv" style="overflow-y: auto; height:310px">
+                <!-- <div id="results"></div> -->
+                <table id="gmap-commnetIconTable" class="table table-hover table-sm" style="font-size: 12px">
+                  <thead>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+            </div>
+          </div>
+
+          <div id="gmap-ctrls">
+            <div id="gmap-ctrl1" class="row gmap-ctrl">
+              <div id="gmap-searchPanel">
+                <div class="form-group">
+                  <div class="m-input-icon m-input-icon--right">
+                    <input type="text" id="gmap-txtSearch" class="form-control m-input" placeholder="Enter to search ...">
+                    <span class="m-input-icon__icon m-input-icon__icon--right">
+                      <span>
+                        <i class="fa fa-search"></i>
+                      </span>
+                    </span>
+                  </div>
+
+                  <!-- <div class="icon-addon addon-md">
+                    <input class="form-control" id="gmap-txtSearch" style="font-size: 13px" placeholder="Enter to search ..." type="text">
+                    <label class="fa fa-search" for="gmap-txtSearch" style="font-size: 13px" rel="tooltip" title="Enter to search"></label>
+                  </div> -->
+                </div>
+              </div>
+              <div id="gmapRoadTableDiv" style="overflow-y: auto; height:310px">
+                <!-- <div id="results"></div> -->
+                <table id="gmapRoadsTable" class="table table-hover table-sm" style="font-size: 12px">
+                  <thead>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+                <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+              </div>
+              <div style="padding-top: 5px">
+                <a id="gmap-btn-loadMore">Load More</a>
+              </div>
+
+            </div>
+            <div id="gmap-ctrl2" class="gmap-ctrl">
+              <div>
+                <a id="gmap-setPoint" class="btn btn-default btn-sm">
+                  <i class="fa fa-map-marker"></i>
+                </a>
+              </div>
+              <div>
+                <a id="gmap-resetView" class="btn btn-default btn-sm">
+                  <i class="fa fa-refresh"></i>
+                </a>
+              </div>
+              <div>
+                <a id="gmap-addIconPoint" class="btn btn-default btn-sm">
+                  <i class="fa fa-plus-circle"></i>
+                </a>
+              </div>
+
+              <div id="gmap-ctrl3" class="gmap-ctrl">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Add Icon Modal-->
+    <div class="modal fade" id="gmap-modal-AddIcon" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Add new Icon
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="gmap-iconType" class="form-control-label">Icon:</label>
+                  <select name="gmap-iconType" id="gmap-iconType" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                  <label for="gmap-addIconDesct" class="form-control-label">Descriptions:</label>
+                  <textarea class="form-control" id="gmap-addIconDesct" placeholder="Textarea" rows="4" placeholder="Descriptions"></textarea>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-addIcon-close" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" id="btn-addIcon-Save" class="btn btn-primary">
+              Save changes
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--Add Road Modal-->
+    <div class="modal fade" id="gmap-modal-AddRoad" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">
+                Add Road
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form>
+                <div class="form-group">
+                  <label for="gmap-txtRoadName" class="form-control-label">Name:</label>
+                  <input class="form-control" id="gmap-txtRoadName" placeholder="Road Name">
+                </div>
+                <div class="form-group">
+                  <label for="gmap-txtRoadDirection" class="form-control-label">Directions:</label>
+                  <textarea class="form-control" id="gmap-txtRoadDirection" rows="4" placeholder="Road Direction"></textarea>
+                </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-addRoad-close" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" id="btn-addRoad-Save" class="btn btn-primary">
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" id="gmap-modal-Delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="gmap-modal-deleteTitle">
+                Delete
+              </h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">
+                  &times;
+                </span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <label class="form-text" id="gmap-lblDeleteMessage">test</label>
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-modalDelete-close" class="btn btn-secondary" data-dismiss="modal">
+              Close
+            </button>
+            <button type="button" id="btn-modalDelete" class="btn btn-primary">
+              Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end::Portlet-->
+  </div>
+</div>
