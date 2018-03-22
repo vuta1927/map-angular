@@ -12,6 +12,6 @@ export class RolesService {
     public getRoles(): Observable<IAppCoreResponse<IRole[]>> {
         let url = this.configurationService.serverSettings.identityUrl;
 
-        return this.http.get<IAppCoreResponse<IRole[]>>(url + 'api/role/getall');
+        return this.http.get<IAppCoreResponse<IRole[]>>(url + 'api/roles/getall');
     }
 }
