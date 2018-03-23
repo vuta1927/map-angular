@@ -54,7 +54,7 @@ export class UsersComponent {
                     .toPromise()
                     .then(response => {
                         var json = response.result as any;
-
+                        console.log(json.totalCount);
                         return {
                             data: json.items,
                             totalCount: json.totalCount
@@ -86,6 +86,7 @@ export class UsersComponent {
     }
 
     itemClick($event, data) {
+        console.log($event, data);
         if ($event.itemData.value === 1) {
             this.openCreateOrUpdateModal(data.data.id);
         }

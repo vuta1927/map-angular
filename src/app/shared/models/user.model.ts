@@ -1,13 +1,21 @@
+import './role.model'
+import { IRole } from './role.model';
 export interface IUser {
-    username: string;
+    userName: string;
+    normalizedUserName: string;
+    email: string;
     name: string;
     surname: string;
-    fullname: string;
-    emailAddress: string;
-    lastLoginTime: Date;
+    accessFailedCount: number;
+    isLockoutEnabled: boolean;
+    lockoutEndDateUtc: Date;
+    normalizedEmail: string;
+    passwordHash: string;
+    securityStamp: string;
+    emailConfirmed: boolean;
+    roles: IRole[];
     isActive: boolean;
-    shouldChangePasswordOnNextLogin: boolean;
-    roleNames: string[];
+    id: number
 }
 
 export interface IUserEdit {
