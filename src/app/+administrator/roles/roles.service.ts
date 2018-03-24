@@ -22,9 +22,9 @@ export class RolesService {
         }, error => {console.log(error); return null;});
     }
 
-    public getRawRoles(params: any): Observable<IAppCoreResponse<IRole[]>> {
+    public getRawRoles(): Observable<IAppCoreResponse<IRole[]>> {
         let url = this.configurationService.serverSettings.identityUrl + '/api/roles';
 
-        return this.http.get<IAppCoreResponse<IRole[]>>(url + params);
+        return this.http.get<IAppCoreResponse<IRole[]>>(url);
     }
 }

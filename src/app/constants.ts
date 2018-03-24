@@ -29,4 +29,14 @@ export class Constants {
     public static mapEdit = 'MapEdit';
     public static mapAdd = 'MapAdd';
     public static mapDelete = 'MapDelete';
+
+    public static EditUser = 'EditUser';
+    public static AddUser = 'AddUser';
+    public static DeleteUser = 'DeleteUser';
+    public static ViewUser = 'ViewUser';
+
+    public static ViewRole = 'ViewRole';
+    public static EditRole = 'EditRole';
+    public static AddRole = 'AddRole';
+    public static DeleteRole = 'DeleteRole';
 }

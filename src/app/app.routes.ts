@@ -23,7 +23,7 @@ export const ROUTES: Routes = [
       },
       {
         path: 'map',
-        canActivate: [MapGuard],
+        canActivate: [AuthGuard, MapGuard],
         loadChildren: 'app/+map/map.module#MapModule',
         data: { pageTitle: 'Map' }
       },

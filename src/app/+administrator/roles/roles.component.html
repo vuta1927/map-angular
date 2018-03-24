@@ -83,8 +83,8 @@
                           <div class="m-dropdown__content">
                             <ul class="m-nav">
                               <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
-                                  <i class="m-nav__link-icon flaticon-add-circular-button"></i>
+                                <a href="" class="m-nav__link" (click)="addNewRole()">
+                                  <i class="m-nav__link-icon flaticon-add-circular-button" ></i>
                                   <span class="m-nav__link-text">
                                     Add New Role
                                   </span>
@@ -117,8 +117,8 @@
                       </div>
                       <dxo-remote-operations [sorting]="true" [paging]="true">
                       </dxo-remote-operations>
-                      <dxo-paging [pageSize]="12"></dxo-paging>
-                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                      <!-- <dxo-paging [pageSize]="12"></dxo-paging> -->
+                      <dxo-pager [showPageSizeSelector]="true"></dxo-pager>
                     </dx-data-grid>
                   </div>
                 </div>
@@ -171,7 +171,8 @@
                 <div class="m-widget3__item">
                   <div class="m-widget3__body">
                     <dx-data-grid id="gridPermissionsContainer" [dataSource]="permissionSource" [showBorders]="true" [columnAutoWidth]=true [hoverStateEnabled]="true"
-                      [allowColumnReordering]="true">
+                     >
+                      <dxo-pager [showPageSizeSelector]="false"></dxo-pager>
                       <dxo-sorting mode="multiple"></dxo-sorting>
                       <dxo-selection mode="single"></dxo-selection>
                       <dxi-column [width]="60" [allowFiltering]="false" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
@@ -184,8 +185,7 @@
                       </div>
                       <dxo-remote-operations [sorting]="true" [paging]="true">
                       </dxo-remote-operations>
-                      <dxo-paging [pageSize]="12"></dxo-paging>
-                      <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
+                      <!-- <dxo-paging [pageSize]="12"></dxo-paging> -->
                     </dx-data-grid>
                   </div>
                 </div>

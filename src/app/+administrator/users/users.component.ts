@@ -53,11 +53,9 @@ export class UsersComponent {
                 return usersService.getUsers(params)
                     .toPromise()
                     .then(response => {
-                        var json = response.result as any;
-                        console.log(json.totalCount);
                         return {
-                            data: json.items,
-                            totalCount: json.totalCount
+                            data: response.result,
+                            totalCount: response.result.length
                         };
                     })
                     .catch(error => { throw 'Data loading error' });

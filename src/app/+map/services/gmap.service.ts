@@ -201,6 +201,9 @@ export class GmapService {
         if (!this.gmap.addPermission) {
             document.getElementById('gmap-setPoint').style.display = 'none';
             document.getElementById('gmap-addIconPoint').style.display = 'none';
+        }else{
+            document.getElementById('gmap-setPoint').style.display = 'block';
+            document.getElementById('gmap-addIconPoint').style.display = 'block';
         }
 
         if (this.gmap.commentIcons.length > 0) {

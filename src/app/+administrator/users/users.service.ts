@@ -11,28 +11,28 @@ export class UsersService {
     constructor(private http: HttpClient, private configurationService: ConfigurationService) {}
 
     public getUsers(params: any): Observable<IAppCoreResponse<IUser[]>> {
-        let url = this.configurationService.serverSettings.identityUrl + 'api/user/getall';
+        let url = this.configurationService.serverSettings.identityUrl + '/api/users';
 
         return this.http.get<IAppCoreResponse<IUser[]>>(url + params);
     }
 
     public getById(id: number): Observable<IAppCoreResponse<IUser>>  {
-        let url = this.configurationService.serverSettings.identityUrl + 'api/user/' + id;
+        let url = this.configurationService.serverSettings.identityUrl + '/api/users/' + id;
         return this.http.get<IAppCoreResponse<IUser>>(url);
     }
 
     public getUserForCreatOrEdit(id?: number): Observable<IAppCoreResponse<IUserForCreateOrEdit>> {
-        let url = this.configurationService.serverSettings.identityUrl + 'api/user/getUserForCreateOrEdit/' + (id ? id : '').toString();
+        let url = this.configurationService.serverSettings.identityUrl + '/api/users/getUserForCreateOrEdit/' + (id ? id : '').toString();
         return this.http.get<IAppCoreResponse<IUserForCreateOrEdit>>(url);
     }
 
     public getByUsername(username: string): Observable<IAppCoreResponse<IUser>> {
-        let url = this.configurationService.serverSettings.identityUrl + 'api/user/withusername/' + username;
+        let url = this.configurationService.serverSettings.identityUrl + '/api/users/withusername/' + username;
         return this.http.get<IAppCoreResponse<IUser>>(url);
     }
 
     public getByEmail(email: string): Observable<IAppCoreResponse<IUser>> {
-        let url = this.configurationService.serverSettings.identityUrl + 'api/user/withemail/' + email;
+        let url = this.configurationService.serverSettings.identityUrl + '/api/users/withemail/' + email;
         return this.http.get<IAppCoreResponse<IUser>>(url);
     }
 }

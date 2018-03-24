@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
 @Injectable()
 export class MapGuard implements CanActivate, CanLoad {
-    viewPermission = 'ViewMap';
+    viewPermission = 'MapView';
     constructor(private router: Router, private securityService: SecurityService) {}
 
     public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
