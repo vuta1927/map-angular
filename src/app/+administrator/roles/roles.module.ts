@@ -4,11 +4,12 @@ import { RouterModule } from '@angular/router';
 import { routes } from './roles.routing';
 import { RolesComponent } from './roles.component';
 
-import { DxDataGridModule, DxMenuModule } from 'devextreme-angular';
+import { DxDataGridModule, DxMenuModule,DxCheckBoxModule, DxSelectBoxModule, DxFormModule } from 'devextreme-angular';
 import { CreateOrUpdateRoleComponent } from './create-or-update/create-or-update-role.component';
+import { AddPermissionToRoleComponent } from './permission/add-permission-to-role.component';
 @NgModule({
-    imports: [SharedModule, RouterModule.forChild(routes), DxDataGridModule, DxMenuModule],
-    declarations: [RolesComponent, CreateOrUpdateRoleComponent],
-    entryComponents: [CreateOrUpdateRoleComponent]
+    imports: [SharedModule, RouterModule.forChild(routes), DxDataGridModule, DxMenuModule,DxCheckBoxModule, DxSelectBoxModule, DxFormModule ],
+    declarations: [RolesComponent, CreateOrUpdateRoleComponent, AddPermissionToRoleComponent],
+    entryComponents: [CreateOrUpdateRoleComponent, AddPermissionToRoleComponent]
 })
 export class RolesModule {}

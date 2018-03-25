@@ -5,6 +5,7 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
 import { MapGuard } from '../app/shared/guards/auth.guard';
 import { DataService } from '../app/shared/services/data.service';
+import { PermissionService } from '../app/+administrator/roles/permission/permission.service';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -41,7 +42,7 @@ import { environment } from '../environments/environment';
       preloadingStrategy: PreloadAllModules
     })
   ],
-  providers: [MapGuard, DataService],
+  providers: [MapGuard, DataService, PermissionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

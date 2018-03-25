@@ -9,24 +9,23 @@
   </button>
 </div>
 <div class="modal-body">
-  <form name="roleInfo" role="form" [formGroup]="form" class="m-form m-form--state m-form--fit m-form--label-align-right" novalidate>
-    <input type="hidden" name="id" formControlName="id" />
+  <form name="AddPermissionToRole" role="form" class="m-form m-form--state m-form--fit m-form--label-align-right">
     <div class="form-group">
       <div id="errorMessage" class="alert alert-danger alert-dismissible fade show m-alert m-alert--air" role="alert" style="display: none;">
         <button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
         <strong>{{messageHeader}}</strong>
         {{message}}
       </div>
-      <label for="roleName" class="form-control-label">
-        Name:
-      </label>
-      <input type="text" class="form-control" name="roleName" formControlName="roleName" id="roleName" required>
+      <div>Select category:</div>
+      <dx-select-box id="category" [(dataSource)]="permissionCategory" valueChangeEvent="keyup" (onValueChanged)="valueChanged($event)"></dx-select-box>
     </div>
     <div class="form-group">
-      <label for="Descriptions" class="form-control-label">
-        Descriptions:
-      </label>
-      <textarea class="form-control" name="descriptions" formControlName="descriptions" id="descriptions"></textarea>
+      <div class="row">
+        <div class="col-md-12">Permission:</div>
+        <div *ngFor="let permission of permissions" class="col-md-12">
+          <dx-check-box id="{{permission.id}}" text="{{permission.displayName}}: {{permission.descriptions}}" [(value)]="permission.isCheck" style="padding-top: 10px" (onValueChanged)="onCheckboxChecked($event)"></dx-check-box> 
+        </div>
+      </div>
     </div>
   </form>
 </div>

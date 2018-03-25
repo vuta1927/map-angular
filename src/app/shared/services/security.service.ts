@@ -26,7 +26,21 @@ export class SecurityService {
         let permissions = _.values(dataAccessToken.Permission);
         return permissions;
         // return this.oauthService.getIdentityClaims();
-     }
+    }
+
+    public getEmail(): any {
+        let dataAccessToken: any = this.getDataFromToken(this.oauthService.getAccessToken());
+        let email = _.values(dataAccessToken.email);
+        return email.join("");
+        // return this.oauthService.getIdentityClaims();
+    }
+
+    public getUserId(): any {
+        let dataAccessToken: any = this.getDataFromToken(this.oauthService.getAccessToken());
+        let userId = _.values(dataAccessToken.id);
+        return userId.join("");
+        // return this.oauthService.getIdentityClaims();
+    }
 
     public get IsAuthorized(): boolean {
         return this.oauthService.hasValidAccessToken();

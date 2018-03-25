@@ -150,10 +150,10 @@
                           <div class="m-dropdown__content">
                             <ul class="m-nav">
                               <li class="m-nav__item">
-                                <a href="" class="m-nav__link">
-                                  <i class="m-nav__link-icon flaticon-add-circular-button"></i>
+                                <a href="" class="m-nav__link" (click)="addPermissionToRole()">
+                                  <i class="m-nav__link-icon flaticon-paper-plane"></i>
                                   <span class="m-nav__link-text">
-                                    Add permission
+                                    Save Change
                                   </span>
                                 </a>
                               </li>
@@ -176,11 +176,13 @@
                       <dxo-sorting mode="multiple"></dxo-sorting>
                       <dxo-selection mode="single"></dxo-selection>
                       <dxi-column [width]="60" [allowFiltering]="false" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
+                      <dxi-column dataField="id" [visible]="false"></dxi-column>
                       <dxi-column dataField="displayName" caption="Name" sortOrder="asc"></dxi-column>
-                      <dxi-column dataField="description" [allowSorting]="false"></dxi-column>
+                      <dxi-column dataField="descriptions" [allowSorting]="false"></dxi-column>
                       <dxi-column dataField="category" [groupIndex]="2" caption=""></dxi-column>
                       <div *dxTemplate="let data of 'actionCellTemplate'">
-                        <span (click)="roleDeleteClick($event, data)" class="role-delete la la-trash"></span>
+                        <dx-check-box id="{{data.data.id}}" [(value)]="data.data.isCheck" (onValueChanged)="onCheckboxChecked($event, data)"></dx-check-box>
+                        <!-- <span (click)="roleDeleteClick($event, data)" class="role-delete la la-trash"></span> -->
                         <!-- <dx-menu [items]="menuItems" showFirstSubmenuMode="onClick" (onItemClick)="itemClick($event, data)"></dx-menu> -->
                       </div>
                       <dxo-remote-operations [sorting]="true" [paging]="true">
