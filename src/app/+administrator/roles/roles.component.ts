@@ -5,11 +5,9 @@ import CustomStore from 'devextreme/data/custom_store';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 import { DxDataGridComponent } from 'devextreme-angular';
-import { TranslateExtService } from '../../shared/services/translate-ext.service';
 import { Helpers } from '../../helpers';
 import { CreateOrUpdateRoleComponent } from './create-or-update/create-or-update-role.component';
 import { Role } from '../../shared/models/role.model';
-import { and } from '@angular/router/src/utils/collection';
 import { PermissionService } from './permission/permission.service';
 import { PermissionCategory } from '../../shared/models/permission.model';
 @Component({
@@ -24,7 +22,7 @@ export class RolesComponent {
     permissionSource: any;
     selectedRole: any;
     permissions: PermissionCategory[];
-    constructor(private roleService: RolesService, private translate: TranslateExtService, private modalService: NgbModal, private permissionService: PermissionService) {
+    constructor(private roleService: RolesService, private modalService: NgbModal, private permissionService: PermissionService) {
         this.dataSource.store = new CustomStore({
             load: function (loadOptions: any) {
                 return roleService.getRawRoles()
@@ -55,7 +53,8 @@ export class RolesComponent {
             let gridId = dataGrid.instance.element().id
             if (gridId == "gridPermissionsContainer")
                 dataGrid.instance.refresh();
-        })
+        });
+        Helpers.setLoading(false);
     }
 
     onCheckboxChecked(e, data){
@@ -74,7 +73,6 @@ export class RolesComponent {
     }
     onSelectionChanged(e) { // Handler of the "selectionChanged" event
     this.selectedRole = e.currentSelectedRowKeys[0];
-    Helpers.setLoading(true);
         if (this.selectedRole){
             this.permissionService.getAllPermissionCategory(this.selectedRole.id).toPromise().then(Response=>{
                 if(Response.result){
@@ -83,6 +81,8 @@ export class RolesComponent {
                     this.permissions = <PermissionCategory[]>Response.result;
                     this.permissionSource = this.permissions;
                 }
+                
+                Helpers.setLoading(false);
             });
         }
             
@@ -118,10 +118,8 @@ export class RolesComponent {
             keyboard: false,
             beforeDismiss: () => false
         }
-        Helpers.setLoading(true);
         const modalRef = this.modalService.open(CreateOrUpdateRoleComponent, config);
         modalRef.componentInstance.role = role;
-        Helpers.setLoading(false);
         var mother = this;
         modalRef.result.then(function () {
             mother.refreshAllGrids();

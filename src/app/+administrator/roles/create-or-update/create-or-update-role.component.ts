@@ -24,6 +24,10 @@ export class CreateOrUpdateRoleComponent implements OnInit {
     message: string;
     isEditMode: boolean;
     constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, public formService: FormService, private ngxErrorsService: NgxErrorsService, private securityService: SecurityService, private usersService: UsersService, private rolesService: RolesService) { 
+        
+    }
+
+    ngOnInit() {
         if (this.role) {
             this.isEditMode = true;
             this.title = "Edit Role: " + this.role.roleName;
@@ -33,10 +37,6 @@ export class CreateOrUpdateRoleComponent implements OnInit {
             this.title = "Add Role";
         }
         this.createForm();
-    }
-
-    ngOnInit() {
-        
     }
 
     createForm() {

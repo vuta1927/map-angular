@@ -367,12 +367,14 @@ export class GmapService {
             var gmapControl = document.getElementById('gmap-ctrl1');
             document.getElementById("gmap-searchPanel").style.width = '300px';
             document.getElementById("gmapRoadTableDiv").style.width = '300px';
+            document.getElementById("gmap-btnShowDetail").style.display = 'none';
             gmapControl.style.display = 'block';
             GLOBAL.isRoadsTableEnable = true;
         } else {
             document.getElementById("gmap-searchPanel").style.width = '280px';
             document.getElementById("gmapRoadTableDiv").style.width = '280px';
             document.getElementById("gmap-btnDescription").style.display = 'block';
+            document.getElementById("gmap-btnShowDetail").style.display = 'block';
             var commentIconsElement = document.getElementById('gmap-description');
             commentIconsElement.innerHTML = ``;
             var mother = this;
@@ -1006,8 +1008,13 @@ export class GmapService {
                         <div class="col-md-12 col-xs-12">
                         <table class="table talbe-sm" >
                             <tr><th>Descriptions</th><td><input type="text" id="gmap-input-description-${icon.id}" style="border:none; width:100%;padding:0px;margin:0px" value="${icon.descriptions}" /></td></tr>
-                                <tr><th>Location</th><td><textarea id="gmap-input-location-${icon.id}" type="text" rows="${rowsNum}" style="resize: none;border:none; width:100%;padding:0px;margin:0px" ${mother.gmap.editPermission ? `` : `readonly`}>${icon.location ? icon.location : results[0].formatted_address}</textarea></td></tr><tr><th>Lat</th><td><input id="gmap-input-lat-${icon.id}" type="text" style="border:none; width:100%;padding:0px;margin:0px" ${mother.gmap.editPermission ? `` : `readonly`} value="${icon.lat}" /></td></tr>
-                                <tr><th>Lng</th><td><input id="gmap-input-lng-${icon.id}" type="text" style="border:none; width:100%;padding:0px;margin:0px" ${mother.gmap.editPermission ? `` : `readonly`} value="${icon.lng}" /></td></tr>
+                                <tr><th>Location</th><td>
+                                ${mother.gmap.editPermission ? `<textarea id="gmap-input-location-${icon.id}" type="text" rows="${rowsNum}" style="resize: none;border:none; width:100%;padding:0px;margin:0px">${icon.location ? icon.location : results[0].formatted_address}</textarea>` : `<p>${icon.location ? icon.location : results[0].formatted_address}</p>`}
+                                </td></tr><tr><th>Lat</th><td>
+                                ${mother.gmap.editPermission ? `<input id="gmap-input-lat-${icon.id}" type="text" style="border:none; width:100%;padding:0px;margin:0px" value="${icon.lat}" />` : `<p>${icon.lat}</p>`}</td></tr>
+                                <tr><th>Lng</th><td>
+                                ${mother.gmap.editPermission ? `<input id="gmap-input-lng-${icon.id}" type="text" style="border:none; width:100%;padding:0px;margin:0px" value="${icon.lng}" />` : `<p>${icon.lng}</p>`}
+                                </td></tr>
                         </table>
                         </div>${mother.gmap.editPermission ? `<div class="col-md-2 col-xs-3"><a id="gmap-btnInfoSave" class="btn btn-sm btn-info m-btn m-btn--icon">
                         <span>
@@ -1034,7 +1041,13 @@ export class GmapService {
                         str = `<div class="row" style="margin-left: 5px">
                         <div class="col-md-12 col-xs-12"><p><strong>${text}</strong></p>
                         <table class="table talbe-sm" >
-                                <tr><th>Location</th><td><textarea id="gmap-input-location-${road.id}" type="text" rows="${rowsNum}" style="resize: none;border:none; width:100%;padding:0px;margin:0px" ${mother.gmap.editPermission ? `` : `readonly`}>${road.name ? road.name : results[0].formatted_address}</textarea></td></tr><tr><th>Direction</th><td><textarea id="gmap-input-direction-${road.id}" rows="${rowsNum}" type="text" style="resize: none;border:none; width:100%;padding:0px;margin:0px" ${mother.gmap.editPermission ? `` : `readonly`}>${road.direction}</textarea></td></tr>
+                                <tr><th>Location</th>
+                                <td>
+                                ${mother.gmap.editPermission ? `<textarea id="gmap-input-location-${road.id}" type="text" rows="${rowsNum}" style="resize: none;border:none; width:98%;padding:0px;margin:0px">${road.name ? road.name : results[0].formatted_address}</textarea>` : `<p>${road.name ? road.name : results[0].formatted_address}</p>`}
+                                
+                                </td>
+                                </tr><tr><th>Direction</th><td>
+                                ${mother.gmap.editPermission ? `<textarea id="gmap-input-direction-${road.id}" rows="${rowsNum}" type="text" style="resize: none;border:none; width:98%;padding:0px;margin:0px">${road.direction}</textarea>`:`<p>${road.direction}</p>`}</td></tr>
                         </table>
                         </div>${mother.gmap.editPermission ? `<div class="col-md-2 col-xs-3">
                         <a id="gmap-btnInfoSave" class="btn btn-sm btn-info m-btn m-btn--icon">
