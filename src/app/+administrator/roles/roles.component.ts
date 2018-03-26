@@ -10,7 +10,6 @@ import { Helpers } from '../../helpers';
 import { CreateOrUpdateRoleComponent } from './create-or-update/create-or-update-role.component';
 import { Role } from '../../shared/models/role.model';
 import { and } from '@angular/router/src/utils/collection';
-import { AddPermissionToRoleComponent } from './permission/add-permission-to-role.component';
 import { PermissionService } from './permission/permission.service';
 import { PermissionCategory } from '../../shared/models/permission.model';
 @Component({
@@ -60,11 +59,13 @@ export class RolesComponent {
     }
 
     onCheckboxChecked(e, data){
+        Helpers.setLoading(true);
         // console.log(e, data);
         this.permissions.forEach(permission => {
             if(permission.id == data.data.id){
                 permission.isCheck = data.data.isCheck;
-                this.permissionService.UpdatePermission(permission).toPromise().then(Response=>{
+                this.permissionService.UpdatePermission(permission, this.selectedRole.id).toPromise().then(Response=>{
+                    Helpers.setLoading(false);
                     this.refreshPermissionGrids();
                 });
             }
@@ -73,9 +74,11 @@ export class RolesComponent {
     }
     onSelectionChanged(e) { // Handler of the "selectionChanged" event
     this.selectedRole = e.currentSelectedRowKeys[0];
+    Helpers.setLoading(true);
         if (this.selectedRole){
             this.permissionService.getAllPermissionCategory(this.selectedRole.id).toPromise().then(Response=>{
                 if(Response.result){
+                    Helpers.setLoading(false);
                     this.permissions = new Array<PermissionCategory>();
                     this.permissions = <PermissionCategory[]>Response.result;
                     this.permissionSource = this.permissions;
@@ -105,23 +108,9 @@ export class RolesComponent {
     roleDeleteClick($event, data) {
         this.roleService.Deleterole(data.data.id).toPromise().then(Response => {
             this.refreshAllGrids();
+            Helpers.setLoading(false);
         });
         // console.log("delete", data.data.roleName);
-    }
-
-    openAddPermissionModal(role?: Role) {
-        const config = {
-            keyboard: false,
-            beforeDismiss: () => false
-        }
-        Helpers.setLoading(true);
-        const modalRef = this.modalService.open(AddPermissionToRoleComponent, config);
-        modalRef.componentInstance.role = role;
-        Helpers.setLoading(false);
-        var mother = this;
-        modalRef.result.then(function () {
-            // mother.refreshAllGrids();
-        })
     }
 
     openCreateOrUpdateModal(role?: Role) {

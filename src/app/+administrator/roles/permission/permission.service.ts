@@ -30,8 +30,8 @@ export class PermissionService {
         return this.http.get<IAppCoreResponse<PermissionCategory[]>>(url);
     }
 
-    public UpdatePermission(permissionForUpdate):Observable<IAppCoreResponse<PermissionCategory[]>>{
-        let url = this.configurationService.serverSettings.identityUrl + '/api/permissions/AddOrUpdatePermission/' + permissionForUpdate.id;
+    public UpdatePermission(permissionForUpdate, roleId:Number):Observable<IAppCoreResponse<PermissionCategory[]>>{
+        let url = this.configurationService.serverSettings.identityUrl + '/api/permissions/AddOrUpdatePermission/' + roleId;
 
         return this.http.put<IAppCoreResponse<PermissionCategory[]>>(url,permissionForUpdate);
     }

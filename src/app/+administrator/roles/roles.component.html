@@ -70,56 +70,38 @@
                 </div>
               </div>
               <div class="m-portlet__head-tools">
-                <ul class="m-portlet__nav">
-                  <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
-                    data-dropdown-toggle="hover" aria-expanded="true">
-                    <a href="#" class="m-portlet__nav-link m-portlet__nav-link--icon m-portlet__nav-link--icon-xl m-dropdown__toggle">
-                      <i class="la la-ellipsis-h m--font-brand"></i>
-                    </a>
-                    <div class="m-dropdown__wrapper">
-                      <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 22.5px;"></span>
-                      <div class="m-dropdown__inner">
-                        <div class="m-dropdown__body">
-                          <div class="m-dropdown__content">
-                            <ul class="m-nav">
-                              <li class="m-nav__item">
-                                <a href="" class="m-nav__link" (click)="addNewRole()">
-                                  <i class="m-nav__link-icon flaticon-add-circular-button" ></i>
-                                  <span class="m-nav__link-text">
-                                    Add New Role
-                                  </span>
-                                </a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
+                
               </div>
             </div>
             <div class="m-portlet__body">
               <div class="m-widget3">
                 <div class="m-widget3__item">
                   <div class="m-widget3__body">
-                    <dx-data-grid id="gridRolesContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]=true [hoverStateEnabled]="true"
-                      (onSelectionChanged)="onSelectionChanged($event)">
-                      <dxo-sorting mode="multiple"></dxo-sorting>
-                      <dxo-selection mode="single"></dxo-selection>
-                      <dxi-column [width]="60" [allowFiltering]="false" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
-                      <dxi-column dataField="roleName" caption="Name" sortOrder="asc"></dxi-column>
-                      <dxi-column dataField="descriptions" [allowSorting]="false"></dxi-column>
-                      <div *dxTemplate="let data of 'actionCellTemplate'">
-                        <span (click)="roleEditClick($event, data)" class="role-edit la la-edit"></span>
-                        <span (click)="roleDeleteClick($event, data)" class="role-delete la la-trash"></span>
-                        <!-- <dx-menu [items]="menuItems" showFirstSubmenuMode="onClick" (onItemClick)="itemClick($event, data)"></dx-menu> -->
-                      </div>
-                      <dxo-remote-operations [sorting]="true" [paging]="true">
-                      </dxo-remote-operations>
-                      <!-- <dxo-paging [pageSize]="12"></dxo-paging> -->
-                      <dxo-pager [showPageSizeSelector]="true"></dxo-pager>
-                    </dx-data-grid>
+                    <div class="col-lg-12">
+                      <button class="btn btn-brand btn-sm m-btn m-btn--icon" type="button" (click)="addNewRole()">
+                        <i class="la la-plus-circle"></i>
+                        Create Role
+                      </button>
+                    </div>
+                    <div class="col-lg-12" style="padding-top: 10px">
+                      <dx-data-grid id="gridRolesContainer" [dataSource]="dataSource" [showBorders]="true" [columnAutoWidth]=true [hoverStateEnabled]="true"
+                        (onSelectionChanged)="onSelectionChanged($event)">
+                        <dxo-sorting mode="multiple"></dxo-sorting>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxi-column [width]="60" [allowFiltering]="false" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
+                        <dxi-column dataField="roleName" caption="Name" sortOrder="asc"></dxi-column>
+                        <dxi-column dataField="descriptions" [allowSorting]="false"></dxi-column>
+                        <div *dxTemplate="let data of 'actionCellTemplate'">
+                          <span (click)="roleEditClick($event, data)" class="role-edit la la-edit"></span>
+                          <span (click)="roleDeleteClick($event, data)" class="role-delete la la-trash"></span>
+                          <!-- <dx-menu [items]="menuItems" showFirstSubmenuMode="onClick" (onItemClick)="itemClick($event, data)"></dx-menu> -->
+                        </div>
+                        <dxo-remote-operations [sorting]="true" [paging]="true">
+                        </dxo-remote-operations>
+                        <!-- <dxo-paging [pageSize]="12"></dxo-paging> -->
+                        <dxo-pager [showPageSizeSelector]="true"></dxo-pager>
+                      </dx-data-grid>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -136,7 +118,7 @@
                   </h3>
                 </div>
               </div>
-              <div class="m-portlet__head-tools">
+              <!-- <div class="m-portlet__head-tools">
                 <ul class="m-portlet__nav">
                   <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
                     data-dropdown-toggle="hover" aria-expanded="true">
@@ -164,14 +146,13 @@
                     </div>
                   </li>
                 </ul>
-              </div>
+              </div> -->
             </div>
             <div class="m-portlet__body">
               <div class="m-widget3">
                 <div class="m-widget3__item">
                   <div class="m-widget3__body">
-                    <dx-data-grid id="gridPermissionsContainer" [dataSource]="permissionSource" [showBorders]="true" [columnAutoWidth]=true [hoverStateEnabled]="true"
-                     >
+                    <dx-data-grid id="gridPermissionsContainer" [dataSource]="permissionSource" [showBorders]="true" [columnAutoWidth]=true [hoverStateEnabled]="true">
                       <dxo-pager [showPageSizeSelector]="false"></dxo-pager>
                       <dxo-sorting mode="multiple"></dxo-sorting>
                       <dxo-selection mode="single"></dxo-selection>

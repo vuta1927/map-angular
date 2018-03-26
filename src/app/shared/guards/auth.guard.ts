@@ -9,7 +9,7 @@ import {
     Route
 } from '@angular/router';
 import { SecurityService } from '../services/security.service';
-
+import { Constants } from '../../constants';
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate, CanActivateChild, CanLoad {
 
 @Injectable()
 export class MapGuard implements CanActivate, CanLoad {
-    viewPermission = 'MapView';
+    viewPermission = 'ViewMap';
     constructor(private router: Router, private securityService: SecurityService) {}
 
     public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
@@ -57,7 +57,72 @@ export class MapGuard implements CanActivate, CanLoad {
 
     private checkPermission(): boolean {
         var claims = this.securityService.getClaim();
-        if(claims.indexOf(this.viewPermission) > -1){
+        // console.log(claims);
+        if(!claims) return false;
+        if(claims.indexOf(Constants.mapView) > -1){
+            return true;
+        }
+        return false;
+    }
+}
+
+@Injectable()
+export class UserGuard implements CanActivate {
+    viewPermission = 'ViewMap';
+    constructor(private router: Router, private securityService: SecurityService) {}
+
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // const url: string = state.url;
+        return this.checkPermission();
+    }
+
+    private checkPermission(): boolean {
+        var claims = this.securityService.getClaim();
+        // console.log(claims);
+        if(!claims) return false;
+        if(claims.indexOf(Constants.ViewUser) > -1){
+            return true;
+        }
+        return false;
+    }
+}
+
+@Injectable()
+export class RoleGuard implements CanActivate {
+    viewPermission = 'ViewMap';
+    constructor(private router: Router, private securityService: SecurityService) {}
+
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // const url: string = state.url;
+        return this.checkPermission();
+    }
+
+    private checkPermission(): boolean {
+        var claims = this.securityService.getClaim();
+        // console.log(claims);
+        if(!claims) return false;
+        if(claims.indexOf(Constants.ViewRole) > -1){
+            return true;
+        }
+        return false;
+    }
+}
+
+@Injectable()
+export class AdminGuard implements CanActivate {
+    viewPermission = 'ViewMap';
+    constructor(private router: Router, private securityService: SecurityService) {}
+
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // const url: string = state.url;
+        return this.checkPermission();
+    }
+
+    private checkPermission(): boolean {
+        var claims = this.securityService.getClaim();
+        // console.log(claims);
+        if(!claims) return false;
+        if(claims.indexOf(Constants.admin) > -1){
             return true;
         }
         return false;

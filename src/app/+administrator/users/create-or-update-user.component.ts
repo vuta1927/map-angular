@@ -59,7 +59,7 @@ export class CreateOrUpdateUserComponent implements OnInit {
                     this.validateEmailNotTaken.bind(this)
                 ],
                 username: [
-                    this.userForCreateOrEdit.user.userName,
+                    this.userForCreateOrEdit.user.username,
                     [Validators.required, Validators.maxLength(50)],
                     this.validateUsernameNotTaken.bind(this)
                 ],
@@ -72,7 +72,7 @@ export class CreateOrUpdateUserComponent implements OnInit {
     }
 
     validateUsernameNotTaken(control: AbstractControl) {
-        if (this.userForCreateOrEdit.isEditMode && control.value === this.userForCreateOrEdit.user.userName) {
+        if (this.userForCreateOrEdit.isEditMode && control.value === this.userForCreateOrEdit.user.username) {
             return Observable.empty();
         }
         return this.userService.getByUsername(control.value).map(res => {
@@ -127,11 +127,26 @@ export class CreateOrUpdateUserComponent implements OnInit {
         }
 
         let user = <IUserEdit>this.form.value;
-        let userCreateOrEdit = new CreateOrUpdateUser();
-        userCreateOrEdit.user = user;
-        userCreateOrEdit.sendActivationEmail = this.form.get('sendActivationEmail').value;
-        userCreateOrEdit.assignedRoleNames = this.assignedRoleNames;
-        
-        console.log(userCreateOrEdit);
+        // let userCreateOrEdit = new CreateOrUpdateUser();
+        // userCreateOrEdit.user = user;
+        user["sendActivationEmail"] = this.form.get('sendActivationEmail').value;
+        user["assignedRoleNames"] = this.assignedRoleNames;
+
+        if(!this.userForCreateOrEdit.isEditMode){
+            this.userService.AddUser(user).toPromise().then(Response=>{
+                if(Response.result){
+                    // console.log(Response.result);
+                    this.activeModal.close();
+                }
+            });
+        }else{
+            this.userService.UpdateUser(user).toPromise().then(Response=>{
+                if(Response.result){
+                    this.activeModal.close();
+                }
+            });
+        }
+
+        console.log(user);
     }
 }

@@ -21,7 +21,7 @@
       </li>
 
       <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open m-menu__item--expanded" routerLinkActiveOptions="{ exact: true }"
-        aria-haspopup="true" data-menu-submenu-toggle="hover">
+        aria-haspopup="true" data-menu-submenu-toggle="hover" *ngIf="viewMap">
         <a routerLink="/map" class="m-menu__link m-menu__toggle">
           <i class="m-menu__link-icon flaticon-map-location"></i>
           <span class="m-menu__link-text">
@@ -31,7 +31,7 @@
       </li>
 
       <li class="m-menu__item  m-menu__item--submenu" routerLinkActive="m-menu__item--open m-menu__item--expanded" routerLinkActiveOptions="{ exact: true }"
-        aria-haspopup="true" data-menu-submenu-toggle="hover">
+        aria-haspopup="true" data-menu-submenu-toggle="hover" *ngIf="accessAdmin">
         <a href="#" class="m-menu__link m-menu__toggle">
           <i class="m-menu__link-icon flaticon-settings"></i>
           <span class="m-menu__link-text">
@@ -42,8 +42,8 @@
         <div class="m-menu__submenu">
           <span class="m-menu__arrow"></span>
           <ul class="m-menu__subnav">
-            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
-              <a routerLink="/administrator/users" class="m-menu__link">
+            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true" *ngIf="viewUser">
+              <a routerLink="/administrator/users" class="m-menu__link" >
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>
                 </i>
@@ -53,8 +53,8 @@
               </a>
             </li>
 
-            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
-                <a routerLink="/administrator/roles" class="m-menu__link">
+            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true" *ngIf="viewRole">
+                <a routerLink="/administrator/roles" class="m-menu__link" >
                   <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                     <span></span>
                   </i>

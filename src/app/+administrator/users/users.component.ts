@@ -38,17 +38,17 @@ export class UsersComponent {
 
         this.dataSource.store = new CustomStore({
             load: function (loadOptions: any) {
-                var params = '?';
+                var params = '';
 
-                params += 'skip=' + loadOptions.skip || 0;
-                params += '&take=' + loadOptions.take || 12;
+                params += loadOptions.skip || 0;
+                params += '/' + loadOptions.take || 12;
 
-                if (loadOptions.sort) {
-                    params += '&orderBy=' + loadOptions.sort[0].selector;
-                    if (loadOptions.sort[0].desc) {
-                        params += ' desc';
-                    }
-                }
+                // if (loadOptions.sort) {
+                //     params += '&orderBy=' + loadOptions.sort[0].selector;
+                //     if (loadOptions.sort[0].desc) {
+                //         params += ' desc';
+                //     }
+                // }
 
                 return usersService.getUsers(params)
                     .toPromise()
@@ -73,23 +73,26 @@ export class UsersComponent {
             beforeDismiss: () => false
         }
         Helpers.setLoading(true);
+        let mother = this;
         this.usersService.getUserForCreatOrEdit(id).subscribe(res => {
             console.log(res.result);
             const modalRef = this.modalService.open(CreateOrUpdateUserComponent, config);
             modalRef.componentInstance.userForCreateOrEdit = res.result;
+            modalRef.result.then(function () {
+                mother.refreshGrids();
+            })
             Helpers.setLoading(false);
         }, _ => {
             Helpers.setLoading(false);
         });
     }
+    
+    refreshGrids() {
+        this.dataGrid.instance.refresh();
+    }
 
     itemClick($event, data) {
         console.log($event, data);
-        if ($event.itemData.value === 1) {
             this.openCreateOrUpdateModal(data.data.id);
-        }
-        if ($event.itemData.value === 2) {
-
-        }
     }
 }

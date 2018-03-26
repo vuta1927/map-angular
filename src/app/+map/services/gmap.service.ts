@@ -757,7 +757,8 @@ export class GmapService {
             
             $('#gmap-modal-AddRoad').modal('show');
 
-            $('#btn-addRoad-Save').click(function () {
+            $('#btn-addRoad-Save').off('click').click(function () { // off('click') loai bo click event da duoc binding truoc do
+                $('#btn-addRoad-Save').prop('disabled', true);
                 var directionText = $('#gmap-txtRoadDirection').val();
                 var name = $('#gmap-txtRoadName').val();
                 if (!directionText) {
@@ -790,6 +791,7 @@ export class GmapService {
                     road.id = results.id
                     mother.drawRouteOnMap(road, perimeterPoints, overview_pathlatlngs);
                     loading.innerHTML = "";
+                    $('#btn-addRoad-Save').prop('disabled', false);
                 });
                 $('#gmap-modal-AddRoad').modal('hide');
             });
@@ -822,12 +824,12 @@ export class GmapService {
                     document.getElementById('gmap-ctrl3').innerHTML = '';
                     document.getElementById('gmap-ctrl3').style.display = 'none';
                 })
-                $('#btn-addIcon-close').click(function(){
+                $('#btn-addIcon-close').off('click').click(function(){
                     GLOBAL.addIconPoint = false;
                     document.getElementById('gmap-ctrl3').innerHTML = '';
                     document.getElementById('gmap-ctrl3').style.display = 'none';
                 });
-                $('#btn-addIcon-Save').click(function(){
+                $('#btn-addIcon-Save').off('click').click(function(){
                     mother.addIconOnRouteProcess(road, event.latLng);
                     GLOBAL.addIconPoint = false;
                     document.getElementById('gmap-ctrl3').innerHTML = '';
@@ -1243,7 +1245,7 @@ export class GmapService {
             message.innerHTML = `Are you sure want to delete this Road: <br><strong>"${road.name}"</strong> ?`;
         }
     
-        $('#btn-modalDelete').click(function(){
+        $('#btn-modalDelete').off('click').click(function(){
             if (type == mother.dialogType.deleteIcon) {
                 mother.deleteIcon(icon);
             } else if (type == mother.dialogType.deleteRoad) {

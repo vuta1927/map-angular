@@ -117,7 +117,7 @@
           <dxo-paging [pageSize]="12"></dxo-paging>
           <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[8, 12, 20]"></dxo-pager>
 
-          <dxi-column caption="Actions" [allowFiltering]="false" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
+          <dxi-column [allowFiltering]="false" [width]="60" [allowSorting]="false" cellTemplate="actionCellTemplate"></dxi-column>
           <dxi-column dataField="userName"></dxi-column>
           <dxi-column dataField="name"></dxi-column>
           <dxi-column dataField="surname"></dxi-column>
@@ -128,10 +128,14 @@
           <dxi-column dataField="lastLoginTime" dataType="date" format="MM/dd/yyyy"></dxi-column>
           <dxi-column dataField="creationTime" dataType="date" format="MM/dd/yyyy"></dxi-column>
 
-          <div *dxTemplate="let data of 'actionCellTemplate'" class="actions-menu">
+          <!-- <div *dxTemplate="let data of 'actionCellTemplate'" class="actions-menu">
             <dx-menu [items]="menuItems" showFirstSubmenuMode="onClick" (onItemClick)="itemClick($event, data)"></dx-menu>
-          </div>
-
+          </div> -->
+          <div *dxTemplate="let data of 'actionCellTemplate'">
+              <span (click)="itemClick($event, data)" class="role-edit la la-edit"></span>
+              <span (click)="itemClick($event, data)" class="role-delete la la-trash"></span>
+              <!-- <dx-menu [items]="menuItems" showFirstSubmenuMode="onClick" (onItemClick)="itemClick($event, data)"></dx-menu> -->
+            </div>
         </dx-data-grid>
       </div>
 			<!--end: Datatable -->

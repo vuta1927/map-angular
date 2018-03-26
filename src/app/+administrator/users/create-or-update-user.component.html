@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    <span>{{ userForCreateOrEdit.isEditMode ? "Edit user: " + userForCreateOrEdit.user.username : "Create new user" }}</span>
+    <span>{{ userForCreateOrEdit.isEditMode ? "Edit user: " + userForCreateOrEdit.user.userName : "Create new user" }}</span>
   </h4>
 </div>
 <div class="modal-body">
@@ -32,10 +32,7 @@
 
           <input type="hidden" name="id" formControlName="id" />
           <div class="row">
-            <div class="col-sm-4 text-center">
-
-            </div>
-            <div class="col-sm-8">
+            <div class="col-sm-12">
               <div class="form-group m-form__group row" ngxErrorsContent [class.has-danger]="nameErrors.invalid">
                 <label>
                   Name *

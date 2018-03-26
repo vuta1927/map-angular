@@ -26,9 +26,12 @@ export class Constants {
     }
 
     //Map Claim
-    public static mapEdit = 'MapEdit';
-    public static mapAdd = 'MapAdd';
-    public static mapDelete = 'MapDelete';
+    public static admin = 'Administrator';
+
+    public static mapEdit = 'EditMap';
+    public static mapAdd = 'AddMap';
+    public static mapDelete = 'DeleteMap';
+    public static mapView = 'ViewMap';
 
     public static EditUser = 'EditUser';
     public static AddUser = 'AddUser';

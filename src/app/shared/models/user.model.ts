@@ -22,13 +22,12 @@ export interface IUserEdit {
     id?: number;
     name: string;
     surname: string;
-    userName: string;
+    username: string;
     emailAddress: string;
     password: string;
     isActive: boolean;
     shouldChangePasswordOnNextLogin: boolean;
 }
-
 export interface IUserRole {
     roleId: number;
     roleName: string;
