@@ -42,8 +42,9 @@
         <div class="m-menu__submenu">
           <span class="m-menu__arrow"></span>
           <ul class="m-menu__subnav">
-            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true" *ngIf="viewUser">
-              <a routerLink="/administrator/users" class="m-menu__link" >
+            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true"
+              *ngIf="viewUser">
+              <a routerLink="/administrator/users" class="m-menu__link">
                 <i class="m-menu__link-bullet m-menu__link-bullet--dot">
                   <span></span>
                 </i>
@@ -53,16 +54,29 @@
               </a>
             </li>
 
-            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true" *ngIf="viewRole">
-                <a routerLink="/administrator/roles" class="m-menu__link" >
-                  <i class="m-menu__link-bullet m-menu__link-bullet--dot">
-                    <span></span>
-                  </i>
-                  <span class="m-menu__link-text">
-                    Roles
-                  </span>
-                </a>
-              </li>
+            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true"
+              *ngIf="viewRole">
+              <a routerLink="/administrator/roles" class="m-menu__link">
+                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                  <span></span>
+                </i>
+                <span class="m-menu__link-text">
+                  Roles & Permissions
+                </span>
+              </a>
+            </li>
+
+            <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true"
+              *ngIf="MapManager">
+              <a routerLink="/administrator/maps" class="m-menu__link">
+                <i class="m-menu__link-bullet m-menu__link-bullet--dot">
+                  <span></span>
+                </i>
+                <span class="m-menu__link-text">
+                  Map management
+                </span>
+              </a>
+            </li>
 
             <li class="m-menu__item" routerLinkActive="m-menu__item--active" routerLinkActiveOptions="{ exact: true }" aria-haspopup="true">
               <a routerLink="/administrator/settings" class="m-menu__link">

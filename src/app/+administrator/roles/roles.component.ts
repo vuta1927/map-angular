@@ -74,6 +74,7 @@ export class RolesComponent {
     onSelectionChanged(e) { // Handler of the "selectionChanged" event
     this.selectedRole = e.currentSelectedRowKeys[0];
         if (this.selectedRole){
+            Helpers.setLoading(true);
             this.permissionService.getAllPermissionCategory(this.selectedRole.id).toPromise().then(Response=>{
                 if(Response.result){
                     Helpers.setLoading(false);

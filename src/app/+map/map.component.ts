@@ -19,7 +19,7 @@ export class MapComponent implements OnInit {
     constructor(private dataService: DataService, private gmapService: GmapService) {
     }
     public ngOnInit() {
-        this.dataService.get("http://localhost:51636/api/maps").subscribe((res: Response) => {
+        this.dataService.get("http://localhost:51636/api/maps/GetMapsByRole").subscribe((res: Response) => {
             // console.log(res);
             let results = res['result'];
             for(var result of results){

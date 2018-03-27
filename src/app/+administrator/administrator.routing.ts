@@ -6,7 +6,7 @@ export const routes: Routes = [
     {
         path: '',
         canActivate: [AuthGuard],
-        component: DefaultComponent,
+        // component: DefaultComponent,
         children: [
             {
                 path: 'users',
@@ -15,6 +15,10 @@ export const routes: Routes = [
             {
                 path: 'roles',
                 loadChildren: './roles/roles.module#RolesModule'
+            },
+            {
+                path: 'maps',
+                loadChildren: './maps/map-management.module#MapManagementModule'
             }
         ]
     }

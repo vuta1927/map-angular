@@ -1,6 +1,6 @@
 
 import { RouterModule, Routes } from '@angular/router';
-import { RolesComponent } from './roles.component';
+import { MapManagementComponent } from './map-management.component';
 import { SharedModule } from '../../shared/shared.module';
 import { DefaultComponent } from '../../shared/components/pages/default/default.component';
 export const routes: Routes = [
@@ -9,7 +9,7 @@ export const routes: Routes = [
         component: DefaultComponent,
         children:[{
             path: '',
-            component: RolesComponent
+            component: MapManagementComponent
         }]
     }
 ];

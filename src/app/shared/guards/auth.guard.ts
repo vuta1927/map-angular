@@ -88,6 +88,26 @@ export class UserGuard implements CanActivate {
 }
 
 @Injectable()
+export class MapManagementGuard implements CanActivate {
+    constructor(private router: Router, private securityService: SecurityService) {}
+
+    public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
+        // const url: string = state.url;
+        return this.checkPermission();
+    }
+
+    private checkPermission(): boolean {
+        var claims = this.securityService.getClaim();
+        // console.log(claims);
+        if(!claims) return false;
+        if(claims.indexOf(Constants.mapManage) > -1){
+            return true;
+        }
+        return false;
+    }
+}
+
+@Injectable()
 export class RoleGuard implements CanActivate {
     viewPermission = 'ViewMap';
     constructor(private router: Router, private securityService: SecurityService) {}

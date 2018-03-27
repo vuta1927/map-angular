@@ -3,9 +3,10 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterModule, PreloadAllModules } from '@angular/router';
-import { MapGuard, AdminGuard, UserGuard, RoleGuard } from '../app/shared/guards/auth.guard';
+import { MapGuard, AdminGuard, UserGuard, RoleGuard, MapManagementGuard } from '../app/shared/guards/auth.guard';
 import { DataService } from '../app/shared/services/data.service';
 import { PermissionService } from '../app/+administrator/roles/permission/permission.service';
+import { MapManagementService } from '../app/+administrator/maps/map-management.service';
 /*
  * Platform and Environment providers/directives/pipes
  */
@@ -42,7 +43,7 @@ import { environment } from '../environments/environment';
       preloadingStrategy: PreloadAllModules
     })
   ],
-  providers: [MapGuard, AdminGuard, UserGuard, RoleGuard, DataService, PermissionService],
+  providers: [MapGuard, AdminGuard, UserGuard, RoleGuard, MapManagementGuard, DataService, PermissionService, MapManagementService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

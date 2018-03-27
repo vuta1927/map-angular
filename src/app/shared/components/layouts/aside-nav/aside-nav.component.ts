@@ -1,5 +1,5 @@
 import { Component, AfterViewInit, OnInit } from '@angular/core';
-import {MapGuard, AdminGuard, UserGuard, RoleGuard} from '../../../guards/auth.guard';
+import {MapGuard, AdminGuard, UserGuard, RoleGuard, MapManagementGuard} from '../../../guards/auth.guard';
 import { SecurityService } from '../../../services/security.service';
 declare let mLayout: any;
 @Component({
@@ -11,8 +11,8 @@ export class AsideNavComponent implements AfterViewInit {
     viewMap: boolean;
     viewUser: boolean;
     viewRole: boolean;
-
-    constructor(private mapGuard: MapGuard, private adminGuard: AdminGuard, private userGuard: UserGuard, private roleGuard: RoleGuard){
+    MapManager: boolean;
+    constructor(private mapGuard: MapGuard, private adminGuard: AdminGuard, private userGuard: UserGuard, private roleGuard: RoleGuard, private mapManagementGuard: MapManagementGuard){
         
     }
     
@@ -24,7 +24,7 @@ export class AsideNavComponent implements AfterViewInit {
         this.viewMap = this.mapGuard.canActivate(null, null);
         this.viewUser = this.userGuard.canActivate(null, null);
         this.viewRole = this.roleGuard.canActivate(null, null);
-
+        this.MapManager = this.mapManagementGuard.canActivate(null, null);
     }
     ngAfterViewInit() {
         mLayout.initAside();

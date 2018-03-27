@@ -28,6 +28,7 @@ export class Constants {
     //Map Claim
     public static admin = 'Administrator';
 
+    public static mapManage = 'MapManage';
     public static mapEdit = 'EditMap';
     public static mapAdd = 'AddMap';
     public static mapDelete = 'DeleteMap';
