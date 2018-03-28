@@ -25,5 +25,9 @@ export class MapView implements IMapForCreateUpdate{
 }
 
 export class MapEdit implements IMapForCreateUpdate{
-    constructor(public id: number, public type: number, public name: string, public descriptions: string){}
+    constructor(public id: number, public type: number, public name: string, public descriptions: string, public rolesAssigned: string[]){}
+}
+
+export class MapUpdate implements IMapForCreateUpdate{
+    constructor(public id: number, public type: number, public name: string, public descriptions: string, public rolesAssigned: string[]){}
 }

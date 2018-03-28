@@ -7,9 +7,9 @@ import  { IMap, MapEdit } from '../../shared/models/map.model';
 @Injectable()
 export class MapManagementService {
     constructor(private http: HttpClient, private configurationService: ConfigurationService) {}
-    public getMaps(): Observable<IAppCoreResponse<IMap[]>> {
-        let url = this.configurationService.serverSettings.identityUrl + '/api/maps/getmaps';
-
+    public getMaps(id?:number): Observable<IAppCoreResponse<IMap[]>> {
+        let url = this.configurationService.serverSettings.identityUrl + '/api/maps/getmaps/' + (id ? id : -1).toString();
+        // console.log(url);
         return this.http.get<IAppCoreResponse<IMap[]>>(url);
     }
 

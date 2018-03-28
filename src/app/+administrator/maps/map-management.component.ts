@@ -15,12 +15,12 @@ import { MapEdit, MapView } from '../../shared/models/map.model';
     encapsulation: ViewEncapsulation.None
 })
 export class MapManagementComponent {
-    
+
     @ViewChildren(DxDataGridComponent) dataGrid: QueryList<DxDataGridComponent>;
     dataSource: any = {};
     permissionSource: any;
     selectedRole: any;
-    
+
     constructor(private modalService: NgbModal, private mapSerivce: MapManagementService) {
         var mother = this;
         this.dataSource.store = new CustomStore({
@@ -28,10 +28,10 @@ export class MapManagementComponent {
                 return mapSerivce.getMaps()
                     .toPromise()
                     .then(response => {
-                        let data = mother.convertDataToMapView(response.result);
+                        // let data = mother.convertDataToMapView(response.result);
                         return {
-                            data: data,
-                            totalCount: data.length
+                            data: response.result,
+                            totalCount: response.result.length
                         }
                     })
                     .catch(error => { throw 'Data Loading Error' });
@@ -39,36 +39,46 @@ export class MapManagementComponent {
         });
     }
 
-    convertDataToMapView(maps:any){
+    convertDataToMapView(maps: any) {
         var newMaps = new Array<MapView>();
         maps.forEach(map => {
-            console.log(map);
-            newMaps.push(new MapView(map.id, map.mapTypeId, map.name, map.descriptions, map.mapType.name));
+            newMaps.push(new MapView(map.id, map.mapTypeId, map.name, map.descriptions, map.mapType.name, map.roles));
         });
+        console.log(newMaps);
         return newMaps;
     }
 
-    mapEditClick($event, data){
-        this.openCreateOrUpdateModal(data.data);
+    mapEditClick($event, data) {
+        this.openCreateOrUpdateModal(data.data.id);
     }
-    addNewMap(){
+    addNewMap() {
         this.openCreateOrUpdateModal();
     }
-    refreshGrid(){
+    refreshGrid() {
         this.dataGrid.forEach(grid => {
             grid.instance.refresh();
         });
     }
-    openCreateOrUpdateModal(map?: MapEdit) {
+    openCreateOrUpdateModal(id?: number) {
         const config = {
             keyboard: false,
             beforeDismiss: () => false
         }
-        const modalRef = this.modalService.open(CreateOrUpdateMapComponent, config);
-        modalRef.componentInstance.map = map;
-        var mother = this;
-        modalRef.result.then(function () {
-            mother.refreshGrid();
-        })
+
+        this.mapSerivce.getMaps(id).toPromise().then(Response => {
+            if (Response.result) {
+                const modalRef = this.modalService.open(CreateOrUpdateMapComponent, config);
+                modalRef.componentInstance.map = Response.result[0];
+                var mother = this;
+                modalRef.result.then(function () {
+                    mother.refreshGrid();
+                })
+            } else {
+                alert("ERROR! Cant get map info!");
+                return
+            }
+        });
+
+
     }
 }
