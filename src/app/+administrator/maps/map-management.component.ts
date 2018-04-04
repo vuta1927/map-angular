@@ -51,14 +51,21 @@ export class MapManagementComponent {
     mapEditClick($event, data) {
         this.openCreateOrUpdateModal(data.data.id);
     }
+    
     addNewMap() {
         this.openCreateOrUpdateModal();
     }
+
     refreshGrid() {
         this.dataGrid.forEach(grid => {
             grid.instance.refresh();
         });
     }
+
+    onSelectionChanged(e){
+
+    }
+
     openCreateOrUpdateModal(id?: number) {
         const config = {
             keyboard: false,

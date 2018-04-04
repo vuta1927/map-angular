@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+    map-client:
+        image: map-client
+        ports: 
+            - "4500:80"

@@ -23,7 +23,6 @@ export class SecurityService {
 
     public getClaim(): any {
         let dataAccessToken: any = this.getDataFromToken(this.oauthService.getAccessToken());
-        console.log(dataAccessToken);
         let permissions = dataAccessToken.Permission;
         return permissions;
         // return this.oauthService.getIdentityClaims();

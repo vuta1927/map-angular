@@ -1,6 +1,6 @@
 <div class="modal-header">
   <h4 class="modal-title">
-    <span>{{ userForCreateOrEdit.isEditMode ? "Edit user: " + userForCreateOrEdit.user.userName : "Create new user" }}</span>
+    <span>{{ userForCreateOrEdit.isEditMode ? "Edit user: " + userForCreateOrEdit.user.username : "Create new user" }}</span>
   </h4>
 </div>
 <div class="modal-body">
@@ -104,11 +104,11 @@
                 Should change password on next login.
               <span></span>
               </label>
-              <label class="m-checkbox">
+              <!-- <label class="m-checkbox">
                   <input class="md-check" type="checkbox" name="SendActivationEmail" value="true" [checked]="!isEdit">
                   Send activation email.
               <span></span>
-              </label>
+              </label> -->
               <label class="m-checkbox">
                   <input class="md-check" type="checkbox" name="IsActive" value="true" [checked]="userForCreateOrEdit.user.isActive ? 'checked' : ''"
                   formControlName="isActive"> Active

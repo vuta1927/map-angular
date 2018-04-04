@@ -17,7 +17,7 @@ export class ConfigurationService {
 
     load() {
         this.serverSettings = {identityUrl: ''}
-        this.serverSettings.identityUrl = 'http://localhost:51636';
+        this.serverSettings.identityUrl = 'http://localhost:5000';
         this.storageService.store('identityUrl', this.serverSettings.identityUrl);
         this.isReady = true;
         this.settingsLoadedSource.next();

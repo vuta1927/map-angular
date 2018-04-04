@@ -7,8 +7,8 @@ import { MapGuard } from '../app/shared/guards/auth.guard';
 export const environment = {
   production: false,
 
-  API_BASE_ENDPOINT: 'http://localhost:51636',
-  API_ENDPOINT: 'http://localhost:51636/api/',
+  API_BASE_ENDPOINT: 'http://localhost:5000',
+  API_ENDPOINT: 'http://localhost:5000/api/',
   ENV_PROVIDERS: [
     MapGuard
   ]

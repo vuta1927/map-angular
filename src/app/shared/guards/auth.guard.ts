@@ -140,7 +140,6 @@ export class AdminGuard implements CanActivate {
 
     private checkPermission(): boolean {
         var claims = this.securityService.getClaim();
-        // console.log(claims);
         if(!claims) return false;
         if(claims.indexOf(Constants.admin) > -1){
             return true;

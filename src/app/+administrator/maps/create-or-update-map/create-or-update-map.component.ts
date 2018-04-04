@@ -9,6 +9,7 @@ import { Observable } from "rxjs/Observable";
 import * as _ from 'lodash';
 import { MapEdit, MapView, MapUpdate } from "../../../shared/models/map.model";
 import { SecurityService } from '../../../shared/services/security.service';
+import { RolesService } from '../../roles/roles.service';
 @Component({
     selector: 'create-or-update-map',
     templateUrl: './create-or-update-map.component.html',
@@ -24,12 +25,18 @@ export class CreateOrUpdateMapComponent implements OnInit {
     isEditMode: boolean;
     isDisable: boolean;
     assignedRoleNames: string[];
-    constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, public formService: FormService, private ngxErrorsService: NgxErrorsService, private securityService: SecurityService, private mapService: MapManagementService) { 
+    constructor(public activeModal: NgbActiveModal, private formBuilder: FormBuilder, public formService: FormService, private ngxErrorsService: NgxErrorsService, private securityService: SecurityService, private mapService: MapManagementService, private roleService: RolesService) { 
         
     }
 
     ngOnInit() {
-        
+        if(!this.map){
+            this.map = new MapView(-1, 100, '', '', '', []);
+        }
+
+        this.assignedRoleNames = this.map.roles.filter(r => r.isAssigned).map(r => { return r.roleName; });
+        this.createForm();
+
         this.mapService.getMapTypes().toPromise().then(Response=>{
             if(Response.result){
                 this.mapTypes = Response.result;
@@ -37,16 +44,26 @@ export class CreateOrUpdateMapComponent implements OnInit {
                 this.isDisable = true;
             }
         });
+
         if (this.map.id) {
             this.isEditMode = true;
             this.title = "Edit Map: " + this.map.name;
         } else {
-            this.map = new MapView(-1, 100, '', '', '', null);
             this.isEditMode = false;
             this.title = "Add Map";
         }
-        this.createForm();
-        this.assignedRoleNames = this.map.roles.filter(r => r.isAssigned).map(r => { return r.roleName; });
+        var mother = this;
+        this.roleService.getRawRoles().toPromise().then(Response=>{
+            if(Response.result){
+                Response.result.forEach(role => {
+                    role["isAssigned"] = false;
+                    role["roleDisplayName"] = role.roleName;
+                    mother.map.roles.push(role);
+                });
+            }else{
+                mother.isDisable = true;
+            }
+        });
     }
 
     private createForm() {
@@ -68,7 +85,7 @@ export class CreateOrUpdateMapComponent implements OnInit {
         }
     }
 
-    private save() {
+    save() {
         if (this.form.invalid) {
             this.formService.validateAllFormFields(this.form);
             return;
